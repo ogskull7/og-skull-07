@@ -586,6 +586,27 @@ window.ogSelectWarrior=function(name,button){
  document.getElementById("ogSelectedMessage").textContent=
  name+" selected! Your warrior is ready for battle!";
 };
+</script><script>
+(function () {
+  const originalSelect = window.ogSelectWarrior;
+
+  window.ogSelectWarrior = function (name, card) {
+    if (originalSelect) originalSelect(name, card);
+
+    const fighter = document.querySelector('#ogArena .fighter');
+    if (!fighter) return;
+
+    fighter.setAttribute('data-warrior', name);
+
+    if (name === 'Saiyan Warrior') {
+      fighter.innerHTML = '⚡';
+    } else if (name === 'Blue Guardian') {
+      fighter.innerHTML = '🔵';
+    } else if (name === 'Silver Warrior') {
+      fighter.innerHTML = '⚪';
+    }
+  };
+})();
 </script>
 </body>
 </html>
