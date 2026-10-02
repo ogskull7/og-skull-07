@@ -607,6 +607,196 @@ window.ogSelectWarrior=function(name,button){
     }
   };
 })();
+</script><!-- OG SKULL 07 - Special Warrior Abilities -->
+<script>
+(function () {
+  const style = document.createElement("style");
+
+  style.textContent = `
+    #ogSpecialAbilities {
+      margin: 25px auto;
+      padding: 20px;
+      max-width: 900px;
+      background: rgba(10,10,20,.92);
+      border: 2px solid #555;
+      border-radius: 18px;
+      text-align: center;
+      color: white;
+    }
+
+    #ogSpecialAbilities h2 {
+      margin-top: 0;
+      color: #ffd700;
+    }
+
+    .og-special-btn {
+      margin: 8px;
+      padding: 13px 20px;
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 15px;
+      transition: .2s;
+    }
+
+    .og-special-btn:hover {
+      transform: scale(1.08);
+    }
+
+    #ogPowerStrike {
+      background: #9b1c1c;
+    }
+
+    #ogEnergyShield {
+      background: #1559b7;
+    }
+
+    #ogSpeedAttack {
+      background: #777;
+    }
+
+    #ogSpecialMessage {
+      margin-top: 15px;
+      min-height: 25px;
+      font-weight: bold;
+    }
+  `;
+
+  document.head.appendChild(style);
+
+  const arena = document.querySelector("#ogArena");
+
+  if (!arena) return;
+
+  const box = document.createElement("div");
+  box.id = "ogSpecialAbilities";
+
+  box.innerHTML = `
+    <h2>⚔️ SPECIAL WARRIOR ABILITIES</h2>
+
+    <button class="og-special-btn" id="ogPowerStrike"
+      onclick="ogSpecialAbility('power')">
+      ⚡ POWER STRIKE
+    </button>
+
+    <button class="og-special-btn" id="ogEnergyShield"
+      onclick="ogSpecialAbility('shield')">
+      🔵 ENERGY SHIELD
+    </button>
+
+    <button class="og-special-btn" id="ogSpeedAttack"
+      onclick="ogSpecialAbility('speed')">
+      ⚪ SPEED ATTACK
+    </button>
+
+    <div id="ogSpecialMessage">
+      Select a warrior to use their special ability.
+    </div>
+  `;
+
+  arena.appendChild(box);
+
+  window.ogSpecialAbility = function (type) {
+
+    const selected =
+      document.querySelector("#og3D .og-warrior-card.active");
+
+    let warrior = "Saiyan Warrior";
+
+    if (selected) {
+      warrior =
+        selected.dataset.warrior ||
+        selected.getAttribute("data-warrior") ||
+        selected.textContent;
+    }
+
+    const message =
+      document.querySelector("#ogSpecialMessage");
+
+    if (type === "power") {
+
+      if (!warrior.includes("Saiyan")) {
+        message.textContent =
+          "⚡ POWER STRIKE belongs to the Saiyan Warrior!";
+        return;
+      }
+
+      message.textContent =
+        "⚡ SAIYAN POWER STRIKE! Massive attack unleashed!";
+
+      ogSpecialDamage(35);
+    }
+
+    else if (type === "shield") {
+
+      if (!warrior.includes("Blue")) {
+        message.textContent =
+          "🔵 ENERGY SHIELD belongs to the Blue Guardian!";
+        return;
+      }
+
+      message.textContent =
+        "🔵 BLUE GUARDIAN ENERGY SHIELD activated!";
+
+      ogSpecialShield();
+    }
+
+    else if (type === "speed") {
+
+      if (!warrior.includes("Silver")) {
+        message.textContent =
+          "⚪ SPEED ATTACK belongs to the Silver Warrior!";
+        return;
+      }
+
+      message.textContent =
+        "⚪ SILVER WARRIOR SPEED ATTACK! Lightning-fast strike!";
+
+      ogSpecialDamage(25);
+    }
+  };
+
+  function ogSpecialDamage(amount) {
+
+    const healthBars =
+      document.querySelectorAll("#ogArena .health-fill");
+
+    if (healthBars.length > 1) {
+
+      const enemyHealth =
+        healthBars[1];
+
+      let current =
+        parseFloat(enemyHealth.style.width) || 100;
+
+      current =
+        Math.max(0, current - amount);
+
+      enemyHealth.style.width =
+        current + "%";
+    }
+  }
+
+  function ogSpecialShield() {
+
+    const playerHealth =
+      document.querySelector("#ogArena .health-fill");
+
+    if (!playerHealth) return;
+
+    let current =
+      parseFloat(playerHealth.style.width) || 100;
+
+    current =
+      Math.min(100, current + 20);
+
+    playerHealth.style.width =
+      current + "%";
+  }
+
+})();
 </script>
 </body>
 </html>
