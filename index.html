@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OG SKULL 07 | Gaming Universe</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#090b12;color:white}
+header{padding:20px 7%;display:flex;justify-content:space-between;align-items:center;background:#111522;position:sticky;top:0;z-index:10}
+.logo{font-size:25px;font-weight:900;color:#ff3030}
+nav a{color:white;text-decoration:none;margin-left:18px;font-weight:bold}
+nav a:hover{color:#ff3030}
+.hero{min-height:440px;padding:90px 8%;background:linear-gradient(90deg,#090b12,#18152c,#251018);display:flex;align-items:center}
+.hero h1{font-size:55px;line-height:1.1;margin-bottom:18px}
+.hero h1 span{color:#ff3030}
+.hero p{font-size:18px;color:#ccc;max-width:600px;line-height:1.6}
+.btn{display:inline-block;margin-top:25px;padding:14px 28px;background:#ff3030;color:white;text-decoration:none;border-radius:8px;font-weight:bold}
+section{padding:45px 7%}
+h2{font-size:29px;margin-bottom:25px}
+.search{width:100%;padding:15px;background:#171c2a;border:1px solid #333;color:white;border-radius:8px;margin-bottom:30px;font-size:16px}
+.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:20px}
+.card{background:#171c2a;border:1px solid #292e3d;border-radius:13px;overflow:hidden;transition:.2s}
+.card:hover{transform:translateY(-5px);border-color:#ff3030}
+.art{height:145px;display:flex;align-items:center;justify-content:center;font-size:65px}
+.red{background:linear-gradient(135deg,#4c0808,#d52b32)}
+.blue{background:linear-gradient(135deg,#071c42,#1768ae)}
+.purple{background:linear-gradient(135deg,#230a43,#8833a8)}
+.green{background:linear-gradient(135deg,#063b25,#29945a)}
+.gold{background:linear-gradient(135deg,#49300a,#b88a20)}
+.card-content{padding:17px}
+.card h3{margin-bottom:9px}
+.card p{font-size:14px;color:#bbb;line-height:1.5}
+.tag{display:inline-block;margin-top:12px;padding:6px 10px;background:#292e3d;border-radius:5px;font-size:12px}
+.card button{width:100%;margin-top:14px;padding:11px;border:0;border-radius:6px;background:#ff3030;color:white;font-weight:bold;cursor:pointer}
+.card button:hover{background:#d71919}
+.about{background:#111522;text-align:center}
+.about p{max-width:700px;margin:auto;color:#ccc;line-height:1.8}
+footer{text-align:center;padding:25px;color:#aaa;background:#070910}
+@media(max-width:600px){header{flex-direction:column;gap:15px}nav a{margin:0 7px;font-size:13px}.hero h1{font-size:38px}.hero{padding:65px 7%}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">💀 OG SKULL 07</div>
+<nav>
+<a href="#home">Home</a>
+<a href="#games">Games</a>
+<a href="#about">About</a>
+</nav>
+</header>
+
+<div class="hero" id="home">
+<div>
+<h1>ENTER THE<br><span>GAMING UNIVERSE</span></h1>
+<p>Explore action, survival, anime battles, adventure and creative worlds. Your gaming journey starts here!</p>
+<a href="#games" class="btn">EXPLORE GAMES 🎮</a>
+</div>
+</div>
+
+<section id="games">
+<h2>🔥 EXPLORE OUR GAMES</h2>
+<input class="search" id="search" placeholder="🔍 Search your favourite game..." oninput="filterGames()">
+
+<div class="games" id="gameList">
+
+<div class="card" data-name="free fire battle royale shooting">
+<div class="art red">🔥</div>
+<div class="card-content">
+<h3>Battle Royale Arena</h3>
+<p>Survive, fight and become the last player standing.</p>
+<span class="tag">BATTLE ROYALE</span>
+<button onclick="selectGame('Battle Royale Arena')">Explore</button>
+</div></div>
+
+<div class="card" data-name="call of duty modern warfare shooting">
+<div class="art blue">🎯</div>
+<div class="card-content">
+<h3>Modern Combat</h3>
+<p>Experience tactical action and intense combat missions.</p>
+<span class="tag">ACTION</span>
+<button onclick="selectGame('Modern Combat')">Explore</button>
+</div></div>
+
+<div class="card" data-name="minecraft building crafting survival">
+<div class="art green">⛏️</div>
+<div class="card-content">
+<h3>Block Craft World</h3>
+<p>Build, explore, craft and create your own world.</p>
+<span class="tag">SANDBOX</span>
+<button onclick="selectGame('Block Craft World')">Explore</button>
+</div></div>
+
+<div class="card" data-name="jujutsu kaisen jjk anime cursed energy">
+<div class="art purple">👹</div>
+<div class="card-content">
+<h3>Jujutsu Legends</h3>
+<p>Enter a supernatural anime-inspired world. Master cursed energy and battle powerful curses.</p>
+<span class="tag">ANIME FIGHTING</span>
+<button onclick="selectGame('Jujutsu Legends')">Explore</button>
+</div></div>
+
+<div class="card" data-name="dragon ball z anime super saiyan">
+<div class="art gold">⚡</div>
+<div class="card-content">
+<h3>Dragon Warriors</h3>
+<p>Train, unlock powerful transformations and challenge mighty fighters.</p>
+<span class="tag">ANIME ACTION</span>
+<button onclick="selectGame('Dragon Warriors')">Explore</button>
+</div></div>
+
+<div class="card" data-name="demon slayer anime sword">
+<div class="art red">⚔️</div>
+<div class="card-content">
+<h3>Demon Hunter</h3>
+<p>Learn sword techniques and face dangerous demons.</p>
+<span class="tag">ANIME ADVENTURE</span>
+<button onclick="selectGame('Demon Hunter')">Explore</button>
+</div></div>
+
+<div class="card" data-name="anime titan giant adventure">
+<div class="art blue">🛡️</div>
+<div class="card-content">
+<h3>Titan Survival</h3>
+<p>Defend humanity and explore a giant-filled world.</p>
+<span class="tag">SURVIVAL</span>
+<button onclick="selectGame('Titan Survival')">Explore</button>
+</div></div>
+
+<div class="card" data-name="roblox adventure multiplayer">
+<div class="art purple">🌎</div>
+<div class="card-content">
+<h3>Adventure Universe</h3>
+<p>Discover new worlds and imagine your own adventures.</p>
+<span class="tag">ADVENTURE</span>
+<button onclick="selectGame('Adventure Universe')">Explore</button>
+</div></div>
+
+</div>
+</section>
+
+<section class="about" id="about">
+<h2>💀 ABOUT OG SKULL 07</h2>
+<p>Welcome to OG SKULL 07, a gaming universe for action lovers, anime fans, creators and explorers. Discover new adventures and get ready for exciting gaming experiences. This is our first version, with more features coming soon!</p>
+</section>
+
+<footer>
+<p>© 2026 OG SKULL 07 | Gaming Universe</p>
+<p>Play • Explore • Create</p>
+</footer>
+
+<script>
+function filterGames(){
+const search=document.getElementById('search').value.toLowerCase();
+document.querySelectorAll('.card').forEach(card=>{
+card.style.display=card.dataset.name.includes(search)?'block':'none';
+});
+}
+function selectGame(name){
+alert(name+" selected! Game development is coming soon to OG SKULL 07.");
+}
+</script>
+
+</body>
+</html>
