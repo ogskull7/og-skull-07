@@ -350,5 +350,242 @@ if(e.key.toLowerCase()==="d")ogAttack("Ki Blast");
 update();
 })();
 </script>
+<style>
+#og3D{
+  padding:45px 6%;
+  background:radial-gradient(circle at top,#25204c,#080b14 75%);
+  color:white;
+  font-family:Arial,sans-serif;
+}
+#og3D h2{text-align:center;color:#ffd34e;font-size:32px}
+#og3D .intro{text-align:center;color:#bbb;margin:12px 0 30px}
+#og3D .warrior-grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+ gap:22px;
+ max-width:1000px;
+ margin:auto;
+}
+#og3D .warrior-card{
+ background:linear-gradient(145deg,#1c2440,#101321);
+ border:2px solid #373d5a;
+ border-radius:17px;
+ padding:18px;
+ text-align:center;
+ overflow:hidden;
+}
+#og3D .warrior-card.active{border-color:#ffd34e}
+#og3D .stage{
+ height:265px;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ position:relative;
+ perspective:700px;
+ background:radial-gradient(ellipse,#38315b,#15172a 65%,transparent);
+ overflow:hidden;
+}
+#og3D .aura{
+ position:absolute;
+ width:165px;height:225px;
+ border-radius:50%;
+ background:radial-gradient(ellipse,rgba(255,210,30,.4),transparent 70%);
+ filter:blur(9px);
+ animation:ogAura 2s infinite alternate;
+}
+#og3D .blue .aura{
+ background:radial-gradient(ellipse,rgba(30,130,255,.55),transparent 70%);
+}
+#og3D .silver .aura{
+ background:radial-gradient(ellipse,rgba(210,230,255,.55),transparent 70%);
+}
+#og3D .model{
+ position:relative;
+ width:115px;
+ height:205px;
+ transform-style:preserve-3d;
+ animation:ogFloat 2.5s ease-in-out infinite;
+}
+#og3D .head{
+ position:absolute;
+ width:57px;height:57px;
+ border-radius:45%;
+ background:linear-gradient(120deg,#ffdfbd,#bd7958);
+ top:20px;left:29px;
+ box-shadow:inset -9px -4px 0 rgba(0,0,0,.16);
+ z-index:3;
+}
+#og3D .hair{
+ position:absolute;
+ top:-15px;left:-7px;
+ width:72px;height:49px;
+ background:#ffcc18;
+ clip-path:polygon(0 55%,12% 0,30% 36%,43% 0,58% 33%,78% 0,100% 46%,85% 100%,12% 100%);
+ filter:drop-shadow(0 0 5px #ffe75c);
+}
+#og3D .blue .hair{background:#168cff;filter:drop-shadow(0 0 7px #36aaff)}
+#og3D .silver .hair{background:#e5e9f5;filter:drop-shadow(0 0 7px white)}
+#og3D .eyes{
+ position:absolute;top:29px;left:10px;
+ width:38px;height:7px;
+ border-top:3px solid #25202a;
+ border-radius:50%;
+}
+#og3D .torso{
+ position:absolute;top:82px;left:24px;
+ width:68px;height:75px;
+ background:linear-gradient(100deg,#e75c16,#ffb13b,#a83a12);
+ clip-path:polygon(15% 0,85% 0,100% 100%,0 100%);
+ border-radius:10px;
+ box-shadow:inset -9px 0 0 rgba(0,0,0,.2);
+}
+#og3D .blue .torso{
+ background:linear-gradient(100deg,#123d9c,#2299ef,#102d76);
+}
+#og3D .silver .torso{
+ background:linear-gradient(100deg,#59677e,#e1e7f3,#66758e);
+}
+#og3D .belt{
+ position:absolute;top:139px;left:25px;
+ width:66px;height:10px;
+ background:#f6d24d;z-index:4;
+}
+#og3D .arm{
+ position:absolute;top:89px;
+ width:20px;height:69px;
+ border-radius:15px;
+ background:linear-gradient(90deg,#e7a77c,#ffdfbd);
+ transform-origin:top;
+}
+#og3D .arm.left{left:8px;transform:rotate(15deg)}
+#og3D .arm.right{right:7px;transform:rotate(-15deg)}
+#og3D .leg{
+ position:absolute;top:151px;
+ width:27px;height:51px;
+ border-radius:5px 5px 10px 10px;
+ background:linear-gradient(90deg,#30365a,#101426);
+}
+#og3D .leg.left{left:28px;transform:rotate(5deg)}
+#og3D .leg.right{right:26px;transform:rotate(-5deg)}
+#og3D .boot{
+ position:absolute;bottom:-3px;
+ width:32px;height:12px;
+ border-radius:7px;background:#e5bd42;
+}
+#og3D .leg.left .boot{left:-3px}
+#og3D .leg.right .boot{right:-3px}
+#og3D .warrior-card h3{color:#ffd34e;margin:12px 0}
+#og3D .warrior-card p{color:#bbb;font-size:14px;min-height:36px}
+#og3D .select-warrior{
+ margin-top:15px;
+ width:100%;padding:12px;
+ background:#ffae22;color:#17100a;
+ border:0;border-radius:8px;
+ font-weight:bold;cursor:pointer;
+}
+#og3D .select-warrior:hover{background:#ffdb58}
+#og3D .selected-info{
+ margin:28px auto 0;
+ max-width:650px;
+ background:#171d30;
+ border:1px solid #66578e;
+ border-radius:12px;
+ padding:20px;text-align:center;
+}
+#og3D .selected-info strong{color:#ffd34e}
+@keyframes ogFloat{
+ 0%,100%{transform:translateY(0) rotateY(-8deg)}
+ 50%{transform:translateY(-9px) rotateY(8deg)}
+}
+@keyframes ogAura{
+ from{transform:scale(.85);opacity:.6}
+ to{transform:scale(1.15);opacity:1}
+}
+@media(max-width:500px){
+ #og3D .stage{height:240px}
+ #og3D h2{font-size:26px}
+}
+</style>
+
+<section id="og3D">
+<h2>⚡ 3D WARRIOR CHARACTERS</h2>
+<p class="intro">Choose your champion. Unlock your warrior power!</p>
+
+<div class="warrior-grid">
+
+<div class="warrior-card active" data-warrior="Saiyan Warrior">
+<div class="stage">
+<div class="aura"></div>
+<div class="model">
+<div class="head"><div class="hair"></div><div class="eyes"></div></div>
+<div class="arm left"></div>
+<div class="arm right"></div>
+<div class="torso"></div>
+<div class="belt"></div>
+<div class="leg left"><div class="boot"></div></div>
+<div class="leg right"><div class="boot"></div></div>
+</div>
+</div>
+<h3>🔥 SAIYAN WARRIOR</h3>
+<p>Golden hair • Orange battle suit • Fire energy</p>
+<button class="select-warrior" onclick="ogSelectWarrior('Saiyan Warrior',this)">SELECT WARRIOR</button>
+</div>
+
+<div class="warrior-card blue" data-warrior="Blue Guardian">
+<div class="stage">
+<div class="aura"></div>
+<div class="model">
+<div class="head"><div class="hair"></div><div class="eyes"></div></div>
+<div class="arm left"></div>
+<div class="arm right"></div>
+<div class="torso"></div>
+<div class="belt"></div>
+<div class="leg left"><div class="boot"></div></div>
+<div class="leg right"><div class="boot"></div></div>
+</div>
+</div>
+<h3>🔵 BLUE GUARDIAN</h3>
+<p>Blue hair • Energy armour • Lightning power</p>
+<button class="select-warrior" onclick="ogSelectWarrior('Blue Guardian',this)">SELECT WARRIOR</button>
+</div>
+
+<div class="warrior-card silver" data-warrior="Silver Warrior">
+<div class="stage">
+<div class="aura"></div>
+<div class="model">
+<div class="head"><div class="hair"></div><div class="eyes"></div></div>
+<div class="arm left"></div>
+<div class="arm right"></div>
+<div class="torso"></div>
+<div class="belt"></div>
+<div class="leg left"><div class="boot"></div></div>
+<div class="leg right"><div class="boot"></div></div>
+</div>
+</div>
+<h3>🥈 SILVER WARRIOR</h3>
+<p>Silver hair • Advanced armour • Cosmic energy</p>
+<button class="select-warrior" onclick="ogSelectWarrior('Silver Warrior',this)">SELECT WARRIOR</button>
+</div>
+
+</div>
+
+<div class="selected-info">
+<p>YOUR SELECTED CHARACTER</p>
+<h3 id="ogSelectedName">🔥 Saiyan Warrior</h3>
+<p id="ogSelectedMessage">Your warrior is ready for battle!</p>
+</div>
+</section>
+
+<script>
+window.ogSelectWarrior=function(name,button){
+ document.querySelectorAll("#og3D .warrior-card").forEach(card=>{
+  card.classList.remove("active");
+ });
+ button.closest(".warrior-card").classList.add("active");
+ document.getElementById("ogSelectedName").textContent="⚡ "+name;
+ document.getElementById("ogSelectedMessage").textContent=
+ name+" selected! Your warrior is ready for battle!";
+};
+</script>
 </body>
 </html>
